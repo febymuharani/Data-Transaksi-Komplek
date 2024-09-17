@@ -1,0 +1,29 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}
+    Update Page
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-6 offset-md-3">
+            <div class="col-md-6">
+                <div class="border bg-white p-3">
+                    <h3>Edit Data Ini</h3>
+                    <hr>
+                    <div class="alert alert-danger">
+                        <h4>Update Data Ini??</h4>
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <a class="btn btn-info" href="{% url 'dashboard-transaksi' %}">Batal</a>
+                        <input class="btn btn-warning" type="submit" value="Update">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

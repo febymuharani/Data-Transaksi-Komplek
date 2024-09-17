@@ -1,0 +1,70 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}
+    Transaksi Page
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'partials/topnav.html' %}
+
+<div class="row my-4">
+    <div class="col-md-4">
+        <div class="">
+        </div>
+        <div class="card card-body">
+            <h5 style="font-family: Verdana;" >Tambah Transaksi</h5>
+            <hr>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="mt-3">
+                    <input class="btn btn-info btn-block" type="submit" value="Send">
+                    <a class="btn btn-danger btn-sm" href="{% url 'dashboard-transaksi' %}">Batal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table bg-white">
+            <thead class="bg-info text-white">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NAMA</th>
+                    <th scope="col">TANGGAL</th>
+                    <th scope="col">JENIS TRANSAKSI</th>
+                    <th scope="col">JUMLAH</th>
+                    <th scope="col">KETERANGAN</th>
+                    <th scope="col">BUKTI</th>
+                    <th scope="col">AKSI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <th scope="row">{{ item.id }}</th>
+                    <td>{{ item.anggota }}</td>
+                    <td>{{ item.tanggal }}</td>
+                    <td>{{ item.jenis_transaksi }}</td>
+                    <td>{{ item.jumlah }}</td>
+                    <td>{{ item.keterangan }}</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{% url 'generate_pdf' item.id %}">Download PDF</a>
+                    </td>
+                    <td>
+                        <form>
+                            <a class="btn btn-info btn-sm"
+                                href="{% url 'dashboard-transaksi-update' item.id %}">Edit</a>
+                            <a class="btn btn-danger btn-sm"
+                                href="{% url 'dashboard-transaksi-delete' item.id %}">Delete</a>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

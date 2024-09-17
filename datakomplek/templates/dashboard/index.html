@@ -1,0 +1,63 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}   
+
+{% include 'partials/topnav.html' %}
+<style>
+.summary {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+/* Styling untuk kotak ringkasan */
+.summary-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    width: 45%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling untuk kotak pemasukan */
+.pemasukan {
+    background-color: #d4edda; /* Warna latar belakang hijau muda */
+    border-left: 5px solid #28a745; /* Border kiri hijau */
+}
+
+/* Styling untuk kotak pengeluaran */
+.pengeluaran {
+    background-color: #f8d7da; /* Warna latar belakang merah muda */
+    border-left: 5px solid #dc3545; /* Border kiri merah */
+}
+
+/* Styling untuk judul kotak */
+.summary-box h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+/* Styling untuk isi kotak */
+.summary-box p {
+    font-size: 1.2em;
+    margin: 0;
+}
+</style>
+<div class="container">
+    <h1>TOTAL TRANSAKSI</h1>
+    <div class="summary">
+        <div class="summary-box pemasukan">
+            <h2>Total Pemasukan</h2>
+            <p>Rp {{ total_pemasukan }}</p>
+        </div>
+        <div class="summary-box pengeluaran">
+            <h2>Total Pengeluaran</h2>
+            <p>Rp {{ total_pengeluaran }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

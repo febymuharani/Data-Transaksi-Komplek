@@ -1,0 +1,35 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}
+    Anggota Page
+{% endblock %}
+
+{% block content %}
+
+{% include 'partials/topnav.html' %}
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                <tr class="table-dark">
+                    <th scope="col">ID</th>
+                    <th scope="col">NAMA</th>
+                    <th scope="col">ALAMAT</th>
+                    <th scope="col">TELPON</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for name in nama %}
+                    <tr>
+                        <th scope="row">{{ name.id }}</th>
+                        <td>{{ name.nama }}</td>
+                        <td>{{ name.alamat }}</td>
+                        <td>{{ name.telpon }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+{% endblock %} 
